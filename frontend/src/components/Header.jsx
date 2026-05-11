@@ -73,7 +73,7 @@ function Header({ navOpen, setNavOpen }) {
         aria-label="Principal"
       >
         <a href="#topo" className="nav__brand">
-          <img src="/logo.png" alt="WaveSync" className="nav__logo-img" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="WaveSync" className="nav__logo-img" />
           <span className="nav__name">WaveSync<span className="nav__dot">.</span></span>
         </a>
         <button 
