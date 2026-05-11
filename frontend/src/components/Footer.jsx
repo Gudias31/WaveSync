@@ -13,7 +13,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <span className="footer__logo" aria-hidden="true"></span>
+          <img src="/logo.png" alt="WaveSync" className="footer__logo-img" />
           <span className="footer__name">WaveSync Technology</span>
         </div>
         <p className="footer__rights">
@@ -26,12 +26,7 @@ function Footer() {
             </a>
           </li>
           <li>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <GitHubIcon />
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/wavesync.tech?igsh=a3dmcmZxYnNtaGdq&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <InstagramIcon />
             </a>
           </li>

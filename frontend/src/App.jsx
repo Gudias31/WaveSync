@@ -47,7 +47,7 @@ function App() {
         <About />
         <Services />
         <Features />
-        <Portfolio />
+        {/* <Portfolio /> */}
         <Contact />
       </main>
       <Footer />

@@ -13,7 +13,7 @@ function Contact() {
           </div>
           <div className="cta-banner__actions">
             <a 
-              href="https://wa.me/5511969360932?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20CloudFrame%20Technology." 
+              href="https://wa.me/5511969360932?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20WaveSync%20Technology." 
               className="btn btn--whatsapp" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -21,9 +21,9 @@ function Contact() {
               <WhatsAppIcon />
               <span>Falar no WhatsApp</span>
             </a>
-            <a href="mailto:email@wavesync.tech>" className="btn btn--ghost btn--ghost-light">
-              contato@cloudframe.tech
-            </a>
+            {/* <a href="mailto:email@wavesync.tech>" className="btn btn--ghost btn--ghost-light">
+              email@wavesync.tech
+            </a> */}
           </div>
         </div>
       </div>
