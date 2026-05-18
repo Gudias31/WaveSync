@@ -32,9 +32,8 @@ jobs:
           npm ci
           npm run build
         env:
-          # Project site (username.github.io/repo): base is /<repo>/.
-          # User/org site (repo named <owner>.github.io at apex domain): set VITE_BASE_PATH to /
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # Custom domains are served from the root path.
+          VITE_BASE_PATH: /
 
       - uses: actions/upload-pages-artifact@v3
         with:
