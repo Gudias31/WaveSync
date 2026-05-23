@@ -1,4 +1,4 @@
-# CloudFrame Technology
+# WaveSync Technology
 
 Full-stack web application with React frontend and Python FastAPI backend, configured for localhost and LAN access.
 
@@ -153,4 +153,4 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ## License
 
-© 2026 CloudFrame Technology. All rights reserved.
+© 2026 WaveSync Technology. All rights reserved.
