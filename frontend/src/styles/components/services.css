@@ -1,0 +1,96 @@
+/* Serviços: núcleo de 3 cards em grid; "também oferecemos" como fileira
+   secundária, mais compacta, para não competir de igual para igual. */
+
+@layer components {
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card h3 {
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  .service-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-hover);
+    border: 1px solid var(--stroke);
+  }
+
+  /* Linha de entregáveis: só o núcleo tem, é o que justifica o peso maior. */
+  .service-card__meta {
+    margin: var(--space-4) 0 0;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--stroke-faint);
+    font-size: var(--fs-meta);
+    color: var(--text-faint);
+    letter-spacing: 0.01em;
+  }
+
+  @media (min-width: 720px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---------- Também oferecemos ---------- */
+  .services__also {
+    margin-top: var(--space-8);
+  }
+
+  .services__also-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--fs-card);
+    font-weight: 600;
+    color: var(--text-faint);
+  }
+
+  .services__also-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+  }
+
+  .service-card--compact {
+    padding: var(--space-5);
+  }
+
+  .service-card--compact .service-card__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 720px) {
+    .services__also-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Sem isto, os 2 cards secundários dividiam o container em 2 colunas
+     enquanto os 3 primários dividiam em 3 — o secundário "compacto" acabava
+     mais LARGO que o principal. Mesmas faixas de coluna dos dois grids, só
+     com uma coluna sobrando (compacto de propósito, sem esticar). */
+  @media (min-width: 1024px) {
+    .services__also-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-card--compact {
+      grid-column: span 1;
+    }
+  }
+}

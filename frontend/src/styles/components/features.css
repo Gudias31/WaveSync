@@ -1,0 +1,66 @@
+/* Diferenciais: lista de itens com marca de verificação. */
+
+@layer components {
+  .section--features {
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgb(61 157 255 / 0.06), transparent);
+  }
+
+  .features__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .feature-item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-5);
+  }
+
+  .feature-item__check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 3px;
+    border-radius: var(--radius-xs);
+    background: var(--accent-gradient);
+    box-shadow: 0 0 16px var(--accent-glow);
+    position: relative;
+  }
+
+  .feature-item__check::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .feature-item strong {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--fs-body);
+  }
+
+  /* Escopado em __text: o seletor antigo `.feature-item span` também casava com
+     `.feature-item__check`, que é um <span>. */
+  .feature-item__text span {
+    color: var(--text-muted);
+    font-size: var(--fs-card);
+  }
+
+  @media (min-width: 720px) {
+    .features__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-item--full {
+      grid-column: span 2;
+    }
+  }
+}

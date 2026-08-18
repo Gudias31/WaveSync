@@ -1,0 +1,128 @@
+/* Sistema de motion e fallbacks de capacidade.
+
+   Esta camada substitui dois blocos do CSS antigo:
+     - @media (max-width: 640px) { ... }               (styles.css:942-973)
+     - @supports (-webkit-touch-callout: none) { ... }  (styles.css:975-1005)
+
+   Os dois eram quase idênticos e os dois desligavam .bg-grid, .bg-glow, todo
+   backdrop-filter e TODAS as animações .reveal. O @supports mirava iOS por meio
+   de uma propriedade proprietária — sniffing de navegador, cujo resultado muda
+   entre versões do WebKit. Resultado prático: todo iPhone e iPad recebia o site
+   chapado e sem uma única animação.
+
+   Aqui nada é escondido por causa de qual navegador é. O que existe são três
+   perguntas honestas: o navegador tem o recurso? o dispositivo é de toque? a
+   pessoa pediu menos transparência ou menos movimento?                       */
+
+@layer motion {
+  /* ---------- Reveal no scroll ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-shift, 20px), 0);
+    /* O atraso vem de --i, definido pelos componentes via style={{'--i': i}}.
+       Sem --i o cálculo dá 0 e o elemento aparece sem stagger. */
+    transition:
+      opacity var(--dur-4) var(--ease-out) calc(var(--i, 0) * var(--stagger-step)),
+      transform var(--dur-4) var(--ease-out) calc(var(--i, 0) * var(--stagger-step));
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --reveal-shift: 28px;
+    }
+  }
+
+  /* Rede de segurança: se o JS não rodar, nada pode ficar invisível para
+     sempre. Vale para navegadores que suportam a media query scripting; para
+     os demais há um <noscript><style> no index.html. */
+  @media (scripting: none) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ---------- Fallback real de capacidade ----------
+     Para quem de fato não tem backdrop-filter: as superfícies ficam opacas o
+     bastante para o texto continuar legível. */
+  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+    :root {
+      --surface-1: rgb(16 24 40 / 0.94);
+      --surface-2: rgb(14 20 34 / 0.96);
+      --surface-3: rgb(20 32 52 / 0.96);
+    }
+  }
+
+  /* ---------- Dispositivos de toque ----------
+     Celular e tablet (não o Safari desktop): vidro mais barato e atmosfera mais
+     discreta. O blur é um token único, então isto é uma linha em vez das ~30
+     linhas duplicadas de antes. O grid e os glows CONTINUAM visíveis, e o
+     motion continua ligado. */
+  @media (hover: none) and (pointer: coarse) {
+    :root {
+      --glass-blur: 10px;
+      --glass-blur-nav: 12px;
+    }
+
+    .bg-grid {
+      opacity: 0.35;
+      background-size: 72px 72px;
+      mask-image: none;
+    }
+
+    /* O brilho que atravessa o botão só existe para o hover, que aqui não há. */
+    .btn::before {
+      display: none;
+    }
+  }
+
+  /* ---------- Menos transparência (Safari 17+/iOS 17+) ---------- */
+  @media (prefers-reduced-transparency: reduce) {
+    :root {
+      --glass-blur: 0px;
+      --glass-blur-nav: 0px;
+      --surface-1: rgb(16 24 40 / 0.96);
+      --surface-2: rgb(14 20 34 / 0.97);
+      --surface-3: rgb(20 32 52 / 0.98);
+    }
+  }
+
+  /* ---------- Menos movimento ----------
+     Único lugar do projeto onde !important é correto: a preferência da pessoa
+     tem de vencer qualquer camada. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .hero-visual__wave-scroll,
+    .bg-glow {
+      animation: none !important;
+    }
+
+    .hero-visual__wave {
+      stroke-dashoffset: 0 !important;
+      animation: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

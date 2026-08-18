@@ -1,25 +1,35 @@
+/* Diferenciais.
+ *
+ * O lead antigo era comparativo ("Padrões que você esperaria de uma empresa de
+ * tecnologia global"), o que convida a comparação em vez de descrever o que é
+ * feito. Aqui cada item é uma prática concreta — e a de SEO técnico virou
+ * literalmente verdade neste próprio site. */
 const features = [
   {
     title: 'Design responsivo',
-    description: 'Layouts fluidos de mobile-first a ultra-wide, com componentes que se adaptam ao contexto.'
+    description:
+      'Layouts fluidos de mobile-first a ultra-wide, com componentes que se adaptam ao contexto.',
   },
   {
-    title: 'Alta performance',
-    description: 'Lazy-loading, code-splitting e edge caching para experiências rápidas em qualquer rede.'
+    title: 'Carregamento leve',
+    description: 'Imagens dimensionadas, código dividido e cache configurado para redes lentas.',
   },
   {
-    title: 'SEO otimizado',
-    description: 'Schema markup, metadados e estrutura semântica alinhados às diretrizes dos principais buscadores.'
+    title: 'SEO técnico',
+    description:
+      'Estrutura semântica, metadados, dados estruturados e sitemap configurados no lançamento.',
   },
   {
     title: 'Segurança',
-    description: 'Cabeçalhos HTTP, sanitização, gestão de segredos e boas práticas OWASP desde o design.'
+    description:
+      'HTTPS, cabeçalhos de segurança, sanitização de entradas e segredos fora do repositório.',
   },
   {
-    title: 'Atendimento rápido',
-    description: 'Canais diretos com o time técnico, ritmo ágil de entregas e transparência em cada milestone.',
-    full: true
-  }
+    title: 'Comunicação direta',
+    description:
+      'Você fala com quem escreve o código, sem intermediários, com retorno sobre cada etapa.',
+    full: true,
+  },
 ]
 
 function Features() {
@@ -27,19 +37,23 @@ function Features() {
     <section id="diferenciais" className="section section--features" aria-labelledby="features-title">
       <div className="container">
         <header className="section__header reveal" data-reveal>
-          <span className="section__label">Diferenciais</span>
-          <h2 id="features-title" className="section__title">Por que nos escolher</h2>
-          <p className="section__lead">Padrões que você esperaria de uma empresa de tecnologia global — aplicados ao seu projeto.</p>
+          <h2 id="features-title" className="section__title">
+            Por que nos escolher
+          </h2>
+          <p className="section__lead">
+            Práticas que aplicamos em todo projeto, independente do tamanho.
+          </p>
         </header>
         <ul className="features__list">
           {features.map((feature, index) => (
-            <li 
-              key={index} 
-              className={`glass-card feature-item reveal ${feature.full ? 'feature-item--full' : ''}`} 
+            <li
+              key={feature.title}
+              className={`glass-card feature-item reveal${feature.full ? ' feature-item--full' : ''}`}
               data-reveal
+              style={{ '--i': index }}
             >
               <span className="feature-item__check" aria-hidden="true"></span>
-              <div>
+              <div className="feature-item__text">
                 <strong>{feature.title}</strong>
                 <span>{feature.description}</span>
               </div>

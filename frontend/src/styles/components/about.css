@@ -1,0 +1,64 @@
+/* Sobre: 2 colunas editoriais em lg, com a coluna de texto sticky. */
+
+@layer components {
+  .section--about {
+    background: linear-gradient(180deg, transparent, rgb(61 157 255 / 0.03));
+  }
+
+  .about__layout {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+  }
+
+  .about__card h3 {
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  .about__icon {
+    width: 52px;
+    height: 52px;
+    background: var(--accent-soft);
+    border: 1px solid var(--stroke-strong);
+  }
+
+  /* md: o passo de 2 colunas que faltava. Antes ia de 3 direto para 1 em 820px,
+     desperdiçando toda a largura de um iPad. */
+  @media (min-width: 720px) {
+    .about__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Com três cards, o terceiro ocupa a linha inteira em vez de ficar órfão. */
+    .about__card:last-child {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about__layout {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: var(--space-10);
+      align-items: start;
+    }
+
+    .about__intro {
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-6));
+      margin-bottom: 0;
+    }
+
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__card:last-child {
+      grid-column: auto;
+    }
+  }
+}

@@ -3,18 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WaveSync — sites, landing pages e sistemas web profissionais com performance e design premium.">
-  <title>WaveSync</title>
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#061b4f">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#070b12">
+
+  <title>WaveSync Technology | Criação de sites e sistemas web sob medida</title>
+  <meta name="description" content="Estúdio de desenvolvimento web: sites institucionais, landing pages e sistemas sob medida. Código próprio, foco em performance e acompanhamento após o lançamento.">
+  <link rel="canonical" href="https://wavesynctech.com.br/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="WaveSync Technology">
+
+  <!-- Open Graph: sem estas tags, compartilhar o link não gerava preview nenhum. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WaveSync Technology">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://wavesynctech.com.br/">
+  <meta property="og:title" content="WaveSync Technology | Criação de sites e sistemas web sob medida">
+  <meta property="og:description" content="Sites institucionais, landing pages e sistemas sob medida — do briefing ao deploy, com código próprio e acompanhamento após o lançamento.">
+  <meta property="og:image" content="https://wavesynctech.com.br/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="WaveSync Technology — desenvolvimento de sites e sistemas web">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WaveSync Technology | Criação de sites e sistemas web sob medida">
+  <meta name="twitter:description" content="Sites, landing pages e sistemas sob medida. Código próprio, performance e suporte após o lançamento.">
+  <meta name="twitter:image" content="https://wavesynctech.com.br/og-image.png">
+  <meta name="twitter:image:alt" content="WaveSync Technology — desenvolvimento de sites e sistemas web">
+
+  <!-- Ícones. O favicon.svg é a fonte da verdade; os PNG existem para quem não
+       aceita SVG. O arquivo antigo era um JPEG de 1024px com o logotipo inteiro
+       sobre fundo claro, declarado como PNG de 512px. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3d9dff">
+  <link rel="manifest" href="/site.webmanifest">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Três pesos, não seis mais itálico: 400 corpo, 600 nav/eyebrow, 800 títulos
+       são os únicos que o CSS usa. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Sem JS o observer de reveal não roda; isto garante que nada fique
+         invisível para sempre em navegadores sem @media (scripting). -->
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
   </noscript>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://wavesynctech.com.br/#organizacao",
+        "name": "WaveSync Technology",
+        "url": "https://wavesynctech.com.br/",
+        "description": "Estúdio de desenvolvimento web: sites institucionais, landing pages e sistemas sob medida.",
+        "image": "https://wavesynctech.com.br/og-image.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://wavesynctech.com.br/icon-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "email": "contato@wavesynctech.com.br",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "areaServed": { "@type": "Country", "name": "Brasil" },
+        "availableLanguage": ["pt-BR"],
+        "sameAs": ["https://www.instagram.com/wavesync.tech"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços de desenvolvimento web",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desenvolvimento de sites" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing pages" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas web" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação com IA" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e suporte" } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wavesynctech.com.br/#site",
+        "url": "https://wavesynctech.com.br/",
+        "name": "WaveSync Technology",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://wavesynctech.com.br/#organizacao" }
+      }
+    ]
+  }
+  </script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11481391026"></script>

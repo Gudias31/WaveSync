@@ -1,0 +1,304 @@
+/* Hero: split editorial em lg, coluna única abaixo.
+
+   O que saiu daqui: .hero__cloud (duas camadas com backdrop-filter ANIMANDO —
+   custo real de performance no celular), .hero__stats (métricas que não se
+   comprovam) e .hero__footnote (texto a ~3,2:1 de contraste, abaixo do AA). */
+
+@layer components {
+  .hero {
+    position: relative;
+    padding: clamp(var(--space-9), 8vw, var(--space-12)) var(--space-5) var(--space-11);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    gap: var(--space-9);
+    align-items: center;
+  }
+
+  .hero__content {
+    /* Centralizado no celular, alinhado à esquerda no desktop. */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-eyebrow);
+    font-weight: 600;
+    color: var(--text-secondary);
+    border: 1px solid var(--stroke);
+    background: var(--surface-inset);
+    margin-bottom: var(--space-5);
+  }
+
+  .hero__badge svg {
+    color: var(--accent);
+  }
+
+  .hero__title {
+    margin: 0 0 var(--space-4);
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: var(--ls-tighter);
+    line-height: 1.08;
+  }
+
+  .hero__title-line {
+    display: block;
+  }
+
+  .hero__title-accent {
+    display: block;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero__subtitle {
+    margin: 0 0 var(--space-7);
+    max-width: 56ch;
+    color: var(--text-muted);
+    font-size: var(--fs-body-lg);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+    margin-bottom: var(--space-8);
+  }
+
+  /* ---------- Compromissos ----------
+     Substitui o bloco de estatísticas. São afirmações que dependem só de como o
+     trabalho é feito, então são verificáveis — diferente de "latência <100ms". */
+  .hero__commitments {
+    display: grid;
+    gap: var(--space-3);
+    text-align: left;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .hero__commitment {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--fs-card);
+    color: var(--text-secondary);
+  }
+
+  .hero__commitment svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ---------- O visual ---------- */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    max-height: 320px;
+    /* Sem contain: paint aqui — ele recortaria os chips, que ficam de
+       propósito para fora da moldura. A contenção vive em __stage. */
+  }
+
+  .hero-visual__glow {
+    position: absolute;
+    inset: 8% 4% 12%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 60% 40%, var(--accent-glow), transparent 65%);
+    opacity: 0.5;
+  }
+
+  .hero-visual__frame {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--stroke-strong);
+    background: linear-gradient(160deg, var(--surface-1), rgb(9 14 24 / 0.86));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-3), var(--shadow-inset-top);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Barra de janela. Mostra o próprio domínio do site — comunica "fazemos web"
+     sem exibir tela de cliente nenhum. */
+  .hero-visual__chrome {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--stroke-faint);
+    background: rgb(255 255 255 / 0.02);
+    flex-shrink: 0;
+  }
+
+  .hero-visual__dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .hero-visual__dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--stroke-strong);
+  }
+
+  .hero-visual__url {
+    flex: 1;
+    padding: 5px var(--space-3);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--stroke-faint);
+    background: rgb(0 0 0 / 0.25);
+    font-size: var(--fs-meta);
+    color: var(--text-faint);
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-visual__stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    /* Isola o repaint das ondas em movimento do resto da página. */
+    contain: paint;
+  }
+
+  .hero-visual__waves {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ---------- Animação das ondas ----------
+     Duas propriedades animadas no total: stroke-dashoffset uma vez na entrada e
+     um transform em loop. Nenhum filter, nenhum backdrop-filter em movimento. */
+  .hero-visual__wave {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: wave-draw var(--dur-5) var(--ease-out) forwards;
+  }
+
+  .hero-visual__wave--2 {
+    animation-delay: 90ms;
+  }
+  .hero-visual__wave--3 {
+    animation-delay: 180ms;
+  }
+  .hero-visual__wave--4 {
+    animation-delay: 270ms;
+  }
+
+  @keyframes wave-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* 640 é exatamente dois períodos do padrão, então o loop não tem costura.
+     will-change aparece só aqui em todo o projeto. */
+  .hero-visual__wave-scroll {
+    animation: wave-scroll var(--dur-loop-wave) linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes wave-scroll {
+    to {
+      transform: translate3d(-640px, 0, 0);
+    }
+  }
+
+  /* Chips flutuantes: só fatos sobre a stack. */
+  .hero-visual__chips {
+    position: absolute;
+    inset: auto 0 -14px 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    padding: 0 var(--space-4);
+  }
+
+  .hero-visual__chip {
+    padding: 6px var(--space-3);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--stroke-strong);
+    background: var(--surface-2);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-1);
+    white-space: nowrap;
+  }
+
+  /* ---------- md: respiro ---------- */
+  @media (min-width: 720px) {
+    .hero-visual {
+      max-height: 400px;
+    }
+  }
+
+  /* ---------- lg: split editorial ---------- */
+  @media (min-width: 1024px) {
+    .hero {
+      /* Padding menor que no mobile: aqui o min-height já garante o respiro, e
+         o padding grande empurrava os compromissos abaixo da dobra numa tela
+         de 720px de altura. */
+      padding-block: var(--space-7) var(--space-8);
+      min-height: min(calc(100svh - var(--header-h)), 860px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-areas: "content visual" "commitments visual";
+      column-gap: var(--space-10);
+      row-gap: var(--space-6);
+      width: 100%;
+    }
+
+    .hero__content {
+      grid-area: content;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .hero__actions {
+      justify-content: flex-start;
+    }
+
+    .hero__commitments {
+      grid-area: commitments;
+    }
+
+    .hero-visual {
+      grid-area: visual;
+      align-self: center;
+      max-height: none;
+      aspect-ratio: 4 / 3.4;
+    }
+  }
+}

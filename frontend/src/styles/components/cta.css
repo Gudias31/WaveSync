@@ -1,0 +1,77 @@
+/* Banner de contato. */
+
+@layer components {
+  .section--cta {
+    padding-bottom: var(--space-11);
+  }
+
+  .cta-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-7);
+  }
+
+  .cta-banner__content {
+    flex: 1 1 280px;
+  }
+
+  .cta-banner__title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--fs-700);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .cta-banner__text {
+    margin: 0;
+    color: var(--text-muted);
+    max-width: var(--measure);
+  }
+
+  .cta-banner__reassurance {
+    display: grid;
+    gap: var(--space-2);
+    margin: var(--space-5) 0 0;
+  }
+
+  .cta-banner__reassurance li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--fs-card);
+    color: var(--text-secondary);
+  }
+
+  .cta-banner__reassurance svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .cta-banner__hint {
+    margin: var(--space-4) 0 0;
+    font-size: var(--fs-meta);
+    color: var(--text-faint);
+  }
+
+  .cta-banner__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: stretch;
+    flex: 0 0 auto;
+    min-width: min(100%, 320px);
+  }
+
+  .cta-banner__actions .btn {
+    width: 100%;
+  }
+
+  /* O e-mail é longo; encolhe em telas estreitas em vez de estourar o botão. */
+  .cta-banner__actions .btn--email span {
+    font-size: clamp(0.78rem, 2.4vw, var(--fs-card));
+    line-height: 1.25;
+    text-align: center;
+  }
+}

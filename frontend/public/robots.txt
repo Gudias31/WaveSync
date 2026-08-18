@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wavesynctech.com.br/sitemap.xml

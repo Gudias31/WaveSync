@@ -1,0 +1,30 @@
+/* WaveSync Technology — folha de estilo raiz.
+   Único arquivo importado por main.jsx.
+
+   A ordem das camadas é declarada UMA vez, aqui. Isso torna a cascata uma
+   decisão explícita em vez de "o último bloco do arquivo vence" — que foi
+   exatamente como o antigo hack de @supports conseguiu desligar a identidade
+   visual inteira só por estar no fim do arquivo.
+
+   Cada arquivo declara sua própria camada internamente (@layer nome { ... }),
+   então os @import abaixo são simples e não dependem da sintaxe @import layer().
+*/
+
+@layer tokens, base, layout, components, motion, utilities;
+
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components/background.css";
+@import "./components/nav.css";
+@import "./components/buttons.css";
+@import "./components/cards.css";
+@import "./components/hero.css";
+@import "./components/about.css";
+@import "./components/services.css";
+@import "./components/process.css";
+@import "./components/features.css";
+@import "./components/cta.css";
+@import "./components/footer.css";
+@import "./motion.css";
+@import "./utilities.css";

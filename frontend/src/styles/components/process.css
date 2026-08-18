@@ -1,0 +1,101 @@
+/* Como trabalhamos: timeline vertical no celular, horizontal em lg.
+
+   A linha conectora é um gradiente em ::before da lista, então não há elemento
+   extra no DOM só para desenhar um traço. */
+
+@layer components {
+  .section--process {
+    background: linear-gradient(180deg, rgb(61 157 255 / 0.03), transparent);
+  }
+
+  .process__list {
+    position: relative;
+    display: grid;
+    gap: var(--space-6);
+    counter-reset: step;
+  }
+
+  .process-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .process-step__num {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--stroke-strong);
+    background: var(--surface-2);
+    color: var(--accent);
+    font-size: var(--fs-eyebrow);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    /* Fica acima da linha conectora. */
+    position: relative;
+    z-index: var(--z-content);
+  }
+
+  .process-step__body h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--fs-h3);
+  }
+
+  .process-step__body p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--fs-card);
+  }
+
+  .process-step__result {
+    display: block;
+    margin-top: var(--space-3);
+    font-size: var(--fs-meta);
+    color: var(--text-faint);
+  }
+
+  .process-step__result strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Linha vertical ligando os números, no rail da esquerda. */
+  .process__list::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    bottom: 22px;
+    left: 22px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--stroke-strong) 12%, var(--stroke-strong) 88%, transparent);
+  }
+
+  /* lg: vira horizontal, cinco colunas, números sobre a linha. */
+  @media (min-width: 1024px) {
+    .process__list {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-6);
+    }
+
+    .process__list::before {
+      top: 22px;
+      bottom: auto;
+      left: 10%;
+      right: 10%;
+      width: auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--stroke-strong) 12%, var(--stroke-strong) 88%, transparent);
+    }
+
+    .process-step {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      justify-items: start;
+    }
+  }
+}
