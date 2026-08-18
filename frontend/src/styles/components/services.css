@@ -79,4 +79,18 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  /* Sem isto, os 2 cards secundários dividiam o container em 2 colunas
+     enquanto os 3 primários dividiam em 3 — o secundário "compacto" acabava
+     mais LARGO que o principal. Mesmas faixas de coluna dos dois grids, só
+     com uma coluna sobrando (compacto de propósito, sem esticar). */
+  @media (min-width: 1024px) {
+    .services__also-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-card--compact {
+      grid-column: span 1;
+    }
+  }
 }
