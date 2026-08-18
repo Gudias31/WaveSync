@@ -1,0 +1,102 @@
+/* Botões. Variantes: primary, secondary, whatsapp, email. */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-pill);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: var(--fs-card);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform var(--dur-3) var(--ease-out),
+      box-shadow var(--dur-3) var(--ease-out),
+      background var(--dur-3);
+  }
+
+  /* Brilho que atravessa o botão no hover. */
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgb(255 255 255 / 0.22) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform var(--dur-4) var(--ease-out);
+  }
+
+  .btn:hover::before {
+    transform: translateX(120%);
+  }
+
+  .btn > * {
+    position: relative;
+  }
+
+  .btn--primary {
+    background: var(--accent-gradient);
+    color: var(--text-on-accent);
+    box-shadow: var(--shadow-accent), inset 0 1px 0 rgb(255 255 255 / 0.2);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-accent-hover), inset 0 1px 0 rgb(255 255 255 / 0.25);
+  }
+
+  .btn--primary:active {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  /* Antes chamava-se .btn--ghost e só era usado por um link comentado.
+     Agora é o CTA secundário do hero. */
+  .btn--secondary {
+    background: var(--surface-inset);
+    color: var(--text);
+    border: 1px solid var(--stroke-strong);
+  }
+
+  .btn--secondary:hover {
+    background: var(--surface-active);
+    transform: translateY(-2px);
+  }
+
+  .btn--secondary:active {
+    transform: translateY(0);
+  }
+
+  .btn--whatsapp {
+    background: var(--whatsapp-gradient);
+    color: #052e16;
+    box-shadow: 0 12px 36px rgb(37 211 102 / 0.35);
+  }
+
+  .btn--whatsapp:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 18px 44px rgb(37 211 102 / 0.45);
+  }
+
+  .btn--whatsapp:active,
+  .btn--email:active {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  .btn--email {
+    background: var(--accent-weak);
+    color: var(--text);
+    border: 1px solid var(--stroke-strong);
+    box-shadow: 0 10px 32px rgb(61 157 255 / 0.2), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  }
+
+  .btn--email:hover {
+    background: var(--accent-soft);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 40px var(--accent-strong), inset 0 1px 0 rgb(255 255 255 / 0.1);
+  }
+}

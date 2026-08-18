@@ -1,0 +1,54 @@
+/* Estruturas compartilhadas por todas as seções. */
+
+@layer layout {
+  main {
+    position: relative;
+    z-index: var(--z-content);
+    padding-top: var(--header-h);
+  }
+
+  .container {
+    width: min(var(--container), calc(100% - var(--space-10)));
+    margin-inline: auto;
+  }
+
+  .section {
+    padding: var(--space-section) 0;
+  }
+
+  /* Sem isto, abrir /#processo direto aterrissa com o título embaixo do nav
+     fixo. Resolve junto com scroll-behavior: smooth, sem JS nenhum. */
+  main,
+  section[id] {
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+  }
+
+  .section__header {
+    max-width: 640px;
+    margin-bottom: clamp(var(--space-8), 6vw, var(--space-9));
+  }
+
+  .section__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--fs-eyebrow);
+    font-weight: 700;
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .section__title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--fs-h2);
+  }
+
+  .section__lead {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--fs-body-lg);
+    max-width: var(--measure);
+  }
+}

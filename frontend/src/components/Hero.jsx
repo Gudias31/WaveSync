@@ -1,36 +1,52 @@
-import { Layers, ArrowRight } from './Icons'
+import { Layers, ArrowRight, CheckIcon } from './Icons'
+import HeroVisual from './HeroVisual'
+
+/* Substituem o bloco de estatísticas antigo ("Latência <100ms*", "Suporte
+ * 24/7"). São compromissos que dependem só de como o trabalho é feito, então
+ * podem ser verificados — diferente de uma métrica que precisava de nota de
+ * rodapé se explicando. */
+const commitments = [
+  'Código próprio, sem construtor de sites',
+  'Você recebe o código e os acessos',
+  'Acompanhamento após o lançamento',
+]
 
 function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="hero__cloud hero__cloud--1" aria-hidden="true"></div>
-      <div className="hero__cloud hero__cloud--2" aria-hidden="true"></div>
       <div className="hero__inner">
-        <p className="hero__badge reveal" data-reveal>
-          <Layers />
-          Soluções web de alto nível
-        </p>
-        <h1 id="hero-title" className="hero__title reveal" data-reveal>
-          <span className="hero__title-line">Construímos experiências</span>
-          <span className="hero__title-accent">digitais que elevam marcas</span>
-        </h1>
-        <p className="hero__subtitle reveal" data-reveal>
-          A WaveSync Technology entrega sites, landing pages e sistemas web com performance de classe mundial,
-          design impecável e engenharia pensada para escalar o seu negócio.
-        </p>
-        <div className="hero__actions reveal" data-reveal>
-          <a href="#contato" className="btn btn--primary">
-            <span>Solicitar orçamento</span>
-            <ArrowRight />
-          </a>
-          {/* <a href="#portfolio" className="btn btn--ghost">Ver trabalhos</a> */}
+        <div className="hero__content">
+          <p className="hero__badge reveal" data-reveal>
+            <Layers />
+            Estúdio de desenvolvimento web
+          </p>
+          <h1 id="hero-title" className="hero__title reveal" data-reveal style={{ '--i': 1 }}>
+            <span className="hero__title-line">Sites e sistemas web</span>
+            <span className="hero__title-accent">feitos sob medida para a sua marca</span>
+          </h1>
+          <p className="hero__subtitle reveal" data-reveal style={{ '--i': 2 }}>
+            Desenvolvemos sites institucionais, landing pages e sistemas sob medida — do briefing ao
+            deploy, com código próprio, foco em performance e acompanhamento depois da entrega.
+          </p>
+          <div className="hero__actions reveal" data-reveal style={{ '--i': 3 }}>
+            <a href="#contato" className="btn btn--primary">
+              <span>Solicitar orçamento</span>
+              <ArrowRight />
+            </a>
+            <a href="#processo" className="btn btn--secondary">
+              <span>Ver como trabalhamos</span>
+            </a>
+          </div>
+          <ul className="hero__commitments reveal" data-reveal style={{ '--i': 4 }}>
+            {commitments.map((item) => (
+              <li key={item} className="hero__commitment">
+                <CheckIcon />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <dl className="hero__stats reveal" data-reveal>
-          <div><dt>Latência</dt><dd>&lt;100ms*</dd></div>
-          <div><dt>Core Web Vitals</dt><dd>Otimizado</dd></div>
-          <div><dt>Suporte</dt><dd>24/7</dd></div>
-        </dl>
-        <p className="hero__footnote reveal" data-reveal>* Referência em stacks edge-ready e CDN.</p>
+        <HeroVisual />
       </div>
     </section>
   )

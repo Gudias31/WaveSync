@@ -1,0 +1,61 @@
+/* Serviços: 1 → 2 → grid editorial de 6 colunas (3 em cima, 2 largos embaixo). */
+
+@layer components {
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card h3 {
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  .service-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-hover);
+    border: 1px solid var(--stroke);
+  }
+
+  /* Linha de entregáveis: é o que justifica a largura extra dos dois cards
+     largos, em vez de eles só terem mais espaço vazio. */
+  .service-card__meta {
+    margin: var(--space-4) 0 0;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--stroke-faint);
+    font-size: var(--fs-meta);
+    color: var(--text-faint);
+    letter-spacing: 0.01em;
+  }
+
+  @media (min-width: 720px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* lg: 6 colunas. Os três primeiros ocupam 2 cada; os dois últimos, 3 cada.
+     Nenhum card fica órfão e a flag `wide` no array de dados deixou de existir —
+     a posição resolve. */
+  @media (min-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .service-card {
+      grid-column: span 2;
+    }
+
+    .service-card:nth-child(4),
+    .service-card:nth-child(5) {
+      grid-column: span 3;
+    }
+  }
+}

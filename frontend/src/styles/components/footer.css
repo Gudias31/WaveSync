@@ -1,0 +1,110 @@
+/* Rodapé. */
+
+@layer components {
+  .site-footer {
+    position: relative;
+    z-index: var(--z-content);
+    border-top: 1px solid var(--stroke);
+    padding: var(--space-8) var(--space-5) var(--space-9);
+    background: var(--color-bg-footer);
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 800;
+  }
+
+  /* Mesma correção do header: a onda 128x108 não é mais cortada num quadrado. */
+  .footer__logo-img {
+    width: 48px;
+    height: auto;
+    aspect-ratio: 128 / 108;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+  }
+
+  .footer__nav a {
+    font-size: var(--fs-card);
+    color: var(--text-muted);
+    transition: color var(--dur-2) var(--ease-out);
+  }
+
+  .footer__nav a:hover {
+    color: var(--text);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--stroke-faint);
+  }
+
+  .footer__rights {
+    margin: 0;
+    font-size: var(--fs-card);
+    color: var(--text-muted);
+  }
+
+  .footer__contact {
+    font-size: var(--fs-card);
+    color: var(--text-muted);
+    transition: color var(--dur-2) var(--ease-out);
+  }
+
+  .footer__contact:hover {
+    color: var(--accent);
+  }
+
+  .footer__social {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .footer__social a {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--stroke);
+    color: var(--text-muted);
+    transition:
+      color var(--dur-2),
+      background var(--dur-2),
+      transform var(--dur-2) var(--ease-out),
+      border-color var(--dur-2);
+  }
+
+  .footer__social a:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--stroke-strong);
+    transform: translateY(-2px);
+  }
+}

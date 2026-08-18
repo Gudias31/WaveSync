@@ -1,0 +1,54 @@
+/* Superfícies de vidro compartilhadas por Sobre, Serviços, Diferenciais e CTA. */
+
+@layer components {
+  .glass-card {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--stroke);
+    background: var(--surface-1);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    padding: var(--space-6);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+    transition:
+      border-color var(--dur-3) var(--ease-out),
+      transform var(--dur-3) var(--ease-out),
+      box-shadow var(--dur-3);
+  }
+
+  .glass-card:hover {
+    border-color: var(--stroke-strong);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgb(0 0 0 / 0.35), var(--shadow-inset-top);
+  }
+
+  .glass-card-strong {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--stroke-strong);
+    background: linear-gradient(145deg, var(--surface-3), rgb(14 22 38 / 0.85));
+    backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+    padding: clamp(var(--space-7), 5vw, var(--space-10));
+    box-shadow: var(--shadow-3), var(--shadow-inset-top);
+  }
+
+  /* Título e corpo têm UM tamanho cada, para todos os cards do site. Antes eram
+     três tamanhos de h3 (1.1 / 1.08 / 1.05rem) e quatro de corpo. */
+  .glass-card h3 {
+    font-size: var(--fs-h3);
+  }
+
+  .glass-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--fs-card);
+  }
+
+  /* Quadrado de ícone dos cards. */
+  .card-icon {
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+}

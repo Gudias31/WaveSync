@@ -1,0 +1,90 @@
+/* Reset, elementos e o sistema de foco. */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--leading-body);
+    color: var(--text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Títulos não herdam mais o line-height 1.6 do body. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--ls-tight);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    background: var(--accent-strong);
+    color: var(--text);
+  }
+
+  /* ---------- Foco ----------
+     Antes desta linha não havia UMA regra de foco em todo o CSS. O outline
+     padrão do navegador é praticamente invisível sobre estas superfícies
+     escuras e translúcidas, então quem navega por teclado ficava perdido. */
+  :focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Em botões pill com gradiente, um outline retangular fica torto; ali o anel
+     é feito com box-shadow, que acompanha o border-radius do elemento. */
+  .btn:focus-visible,
+  .nav__cta:focus-visible,
+  .footer__social a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Só remove o outline nativo de quem já ganhou um anel próprio. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}

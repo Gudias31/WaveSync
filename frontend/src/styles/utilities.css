@@ -1,0 +1,38 @@
+/* Utilitários. Última camada: pode sobrescrever componentes de propósito. */
+
+@layer utilities {
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Primeiro nó focável da página: pula o menu e vai direto ao conteúdo.
+     Fica fora da tela até receber foco por teclado. */
+  .skip-link {
+    position: fixed;
+    top: var(--space-3);
+    left: var(--space-3);
+    z-index: var(--z-skip);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--stroke-strong);
+    background: var(--ink-800);
+    color: var(--text);
+    font-size: var(--fs-card);
+    font-weight: 600;
+    box-shadow: var(--shadow-2);
+    transform: translateY(calc(-100% - var(--space-6)));
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}

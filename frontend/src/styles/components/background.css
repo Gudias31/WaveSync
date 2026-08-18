@@ -1,0 +1,43 @@
+/* Atmosfera de fundo: grid fino + dois glows radiais, todos decorativos. */
+
+@layer components {
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-bg);
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgb(80 140 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(80 140 255 / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 20%, transparent 75%);
+  }
+
+  .bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: var(--z-bg);
+  }
+
+  .bg-glow--1 {
+    width: 520px;
+    height: 520px;
+    top: -120px;
+    right: -80px;
+    background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+  }
+
+  .bg-glow--2 {
+    width: 420px;
+    height: 420px;
+    bottom: 10%;
+    left: -100px;
+    /* rgb() primeiro como fallback: color-mix() é recente (Chrome 111+,
+       Safari 16.2+) e sem a primeira declaração o glow simplesmente não pinta. */
+    background: radial-gradient(circle, rgb(100 80 255 / 0.35), transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--violet-500) 35%, transparent), transparent 70%);
+  }
+}

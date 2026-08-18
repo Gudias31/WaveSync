@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WaveSync">
+  <title>WaveSync</title>
+  <defs>
+    <linearGradient id="wsIcon" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#5cb0ff"/>
+      <stop offset="0.55" stop-color="#3d9dff"/>
+      <stop offset="1" stop-color="#8ecbff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#070b12"/>
+  <g fill="none" stroke-linecap="round">
+    <!-- Onda de apoio: mais fina e discreta, dá profundidade em tamanho grande
+         e simplesmente desaparece a 16px, sem sujar o glifo principal. -->
+    <path d="M104 300 q 38 76 76 0 q 38 -76 76 0 q 38 76 76 0 q 38 -76 76 0"
+          stroke="#3d9dff" stroke-opacity="0.42" stroke-width="22"/>
+    <!-- Onda principal: 44px de traço em 512 (8,6% do lado), o que mantém
+         cerca de 1,4px a 16px — o mínimo para a forma continuar legível. -->
+    <path d="M104 226 q 38 -84 76 0 q 38 84 76 0 q 38 -84 76 0 q 38 84 76 0"
+          stroke="url(#wsIcon)" stroke-width="44"/>
+  </g>
+</svg>

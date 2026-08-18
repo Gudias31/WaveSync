@@ -1,105 +1,97 @@
 import { useEffect, useRef } from 'react'
+import { useHeaderHeight } from '../hooks/useHeaderHeight'
 
-function Header({ navOpen, setNavOpen }) {
-  const navRef = useRef(null)
+const links = [
+  { href: '#sobre', label: 'Sobre' },
+  { href: '#servicos', label: 'Serviços' },
+  { href: '#processo', label: 'Processo' },
+  { href: '#diferenciais', label: 'Diferenciais' },
+]
+
+function Header({ navOpen, setNavOpen, scrolled }) {
   const headerRef = useRef(null)
+  const navRef = useRef(null)
 
-  const handleNavToggle = () => {
-    setNavOpen(!navOpen)
-  }
+  useHeaderHeight(headerRef)
 
-  const closeNav = () => {
-    setNavOpen(false)
-  }
+  const closeNav = () => setNavOpen(false)
 
-  const handleSmoothScroll = (e) => {
-    const anchor = e.target.closest('a[href^="#"]')
-    if (!anchor || anchor.getAttribute('href') === '#') return
-    
-    const id = anchor.getAttribute('href').slice(1)
-    const target = document.getElementById(id)
-    if (!target) return
-    
-    e.preventDefault()
-    const headerH = headerRef.current ? headerRef.current.offsetHeight : 0
-    const top = target.getBoundingClientRect().top + window.scrollY - headerH - 12
-    
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    window.scrollTo({
-      top: Math.max(0, top),
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
-    })
-    closeNav()
-  }
-
+  // Fecha por Escape e por clique fora — listeners montados apenas enquanto o
+  // menu está aberto, para não ficar escutando o documento à toa.
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    if (!navOpen) return
+
+    const onKeyDown = (e) => {
       if (e.key === 'Escape') closeNav()
     }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
 
-  useEffect(() => {
-    const navBar = navRef.current
-    if (!navBar) return
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
-
-    const handleScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop
-      navBar.style.boxShadow =
-        y > 24
-          ? '0 12px 48px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)'
-          : '0 8px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+    const onPointerDown = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) closeNav()
     }
 
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [navOpen])
 
+  // Trava o scroll do corpo enquanto o painel está aberto.
   useEffect(() => {
-    document.documentElement.addEventListener('click', handleSmoothScroll)
-    return () => document.documentElement.removeEventListener('click', handleSmoothScroll)
-  }, [])
+    if (!navOpen) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [navOpen])
 
   return (
     <header className="site-header" ref={headerRef}>
-      <nav 
+      <nav
         ref={navRef}
-        className={`nav glass-nav ${navOpen ? 'is-open' : ''}`} 
+        className={`nav glass-nav${navOpen ? ' is-open' : ''}${scrolled ? ' is-scrolled' : ''}`}
         aria-label="Principal"
       >
-        <a href="#topo" className="nav__brand">
+        <a href="#topo" className="nav__brand" aria-label="WaveSync — início">
           <img
             src={`${import.meta.env.BASE_URL}logo.png`}
-            alt="WaveSync"
+            alt=""
             className="nav__logo-img"
-            width="34"
-            height="34"
+            width="128"
+            height="108"
+            fetchpriority="high"
           />
-          <span className="nav__name">WaveSync<span className="nav__dot">.</span></span>
+          <span className="nav__name" aria-hidden="true">
+            WaveSync<span className="nav__dot">.</span>
+          </span>
         </a>
-        <button 
-          type="button" 
-          className="nav__toggle" 
-          aria-expanded={navOpen} 
-          aria-controls="nav-menu" 
-          aria-label="Abrir menu"
-          onClick={handleNavToggle}
+        <button
+          type="button"
+          className="nav__toggle"
+          aria-expanded={navOpen}
+          aria-controls="nav-menu"
+          aria-label={navOpen ? 'Fechar menu' : 'Abrir menu'}
+          onClick={() => setNavOpen(!navOpen)}
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
         <ul id="nav-menu" className="nav__links">
-          <li><a href="#sobre" onClick={closeNav}>Sobre</a></li>
-          <li><a href="#servicos" onClick={closeNav}>Serviços</a></li>
-          <li><a href="#diferenciais" onClick={closeNav}>Diferenciais</a></li>
-          {/* <li><a href="#portfolio" onClick={closeNav}>Portfólio</a></li> */}
-          <li><a href="#contato" className="nav__cta" onClick={closeNav}>Contato</a></li>
+          {links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} onClick={closeNav}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="#contato" className="nav__cta" onClick={closeNav}>
+              Contato
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
