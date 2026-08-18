@@ -42,7 +42,6 @@ function Process() {
     <section id="processo" className="section section--process" aria-labelledby="process-title">
       <div className="container">
         <header className="section__header reveal" data-reveal>
-          <span className="section__label">Processo</span>
           <h2 id="process-title" className="section__title">
             Como trabalhamos
           </h2>

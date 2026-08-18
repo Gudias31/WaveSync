@@ -37,7 +37,6 @@ function Features() {
     <section id="diferenciais" className="section section--features" aria-labelledby="features-title">
       <div className="container">
         <header className="section__header reveal" data-reveal>
-          <span className="section__label">Diferenciais</span>
           <h2 id="features-title" className="section__title">
             Por que nos escolher
           </h2>

@@ -274,11 +274,14 @@
 
     .hero__inner {
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: var(--space-10);
+      grid-template-areas: "content visual" "commitments visual";
+      column-gap: var(--space-10);
+      row-gap: var(--space-6);
       width: 100%;
     }
 
     .hero__content {
+      grid-area: content;
       text-align: left;
       align-items: flex-start;
     }
@@ -287,7 +290,13 @@
       justify-content: flex-start;
     }
 
+    .hero__commitments {
+      grid-area: commitments;
+    }
+
     .hero-visual {
+      grid-area: visual;
+      align-self: center;
       max-height: none;
       aspect-ratio: 4 / 3.4;
     }

@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { useHeaderHeight } from '../hooks/useHeaderHeight'
 
+/* "Diferenciais" saiu daqui: com a CTA, eram 5 alvos simultâneos competindo
+ * pela atenção no header fixo. A seção continua acessível por scroll e pelo
+ * rodapé — só não disputa espaço com o CTA em toda tela. */
 const links = [
   { href: '#sobre', label: 'Sobre' },
   { href: '#servicos', label: 'Serviços' },
   { href: '#processo', label: 'Processo' },
-  { href: '#diferenciais', label: 'Diferenciais' },
 ]
 
 function Header({ navOpen, setNavOpen, scrolled }) {

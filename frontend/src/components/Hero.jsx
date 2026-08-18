@@ -37,16 +37,20 @@ function Hero() {
               <span>Ver como trabalhamos</span>
             </a>
           </div>
-          <ul className="hero__commitments reveal" data-reveal style={{ '--i': 4 }}>
-            {commitments.map((item) => (
-              <li key={item} className="hero__commitment">
-                <CheckIcon />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
+        {/* Fora de .hero__content de propósito: no mobile ela empilha logo após
+            as ações, antes da lista de compromissos — antes ficava por último,
+            abaixo de um bloco só de texto. No desktop, grid-template-areas
+            devolve a lista para a coluna 1, sob o conteúdo. */}
         <HeroVisual />
+        <ul className="hero__commitments reveal" data-reveal style={{ '--i': 4 }}>
+          {commitments.map((item) => (
+            <li key={item} className="hero__commitment">
+              <CheckIcon />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

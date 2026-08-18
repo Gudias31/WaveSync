@@ -28,7 +28,6 @@ function About() {
     <section id="sobre" className="section section--about" aria-labelledby="about-title">
       <div className="container about__layout">
         <header className="section__header about__intro reveal" data-reveal>
-          <span className="section__label">Sobre a empresa</span>
           <h2 id="about-title" className="section__title">
             Quem é a WaveSync
           </h2>
