@@ -16,19 +16,19 @@ function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__inner">
         <div className="hero__content">
-          <p className="hero__badge reveal" data-reveal>
+          <p className="hero__badge">
             <Layers />
             Estúdio de desenvolvimento web
           </p>
-          <h1 id="hero-title" className="hero__title reveal" data-reveal style={{ '--i': 1 }}>
+          <h1 id="hero-title" className="hero__title">
             <span className="hero__title-line">Sites e sistemas web</span>
             <span className="hero__title-accent">feitos sob medida para a sua marca</span>
           </h1>
-          <p className="hero__subtitle reveal" data-reveal style={{ '--i': 2 }}>
+          <p className="hero__subtitle">
             Desenvolvemos sites institucionais, landing pages e sistemas sob medida — do briefing ao
             deploy, com código próprio, foco em performance e acompanhamento depois da entrega.
           </p>
-          <div className="hero__actions reveal" data-reveal style={{ '--i': 3 }}>
+          <div className="hero__actions">
             <a href="#contato" className="btn btn--primary">
               <span>Solicitar orçamento</span>
               <ArrowRight />
@@ -43,7 +43,7 @@ function Hero() {
             abaixo de um bloco só de texto. No desktop, grid-template-areas
             devolve a lista para a coluna 1, sob o conteúdo. */}
         <HeroVisual />
-        <ul className="hero__commitments reveal" data-reveal style={{ '--i': 4 }}>
+        <ul className="hero__commitments">
           {commitments.map((item) => (
             <li key={item} className="hero__commitment">
               <CheckIcon />

@@ -1,49 +1,56 @@
 import { useEffect } from 'react'
 
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect()
+  return rect.bottom > 0 && rect.top < (window.innerHeight || document.documentElement.clientHeight)
+}
+
 /**
  * Revela elementos [data-reveal] quando entram na viewport.
  *
- * Observa o documento inteiro em vez de expor um ref por elemento: a página é
- * única, tudo renderiza no primeiro paint e `data-reveal` já está no JSX. Um
- * observer só, com cleanup — o código anterior, em App.jsx, nunca chamava
- * disconnect(), então sob StrictMode dois observers eram anexados a cada nó.
- *
- * O filtro `:not(.is-visible)` torna a chamada idempotente, então dá para
- * chamar de novo numa subárvore montada depois.
+ * No celular o CSS já deixa .reveal visível: o Safari iOS frequentemente não
+ * dispara IntersectionObserver até o primeiro scroll, e esconder o conteúdo
+ * até lá vira tela preta. Aqui só animamos em desktop, e mesmo assim
+ * marcamos na hora o que já está na tela (sem esperar o callback).
  */
 export function useReveal() {
   useEffect(() => {
     const elements = document.querySelectorAll('[data-reveal]:not(.is-visible)')
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!elements.length) return
 
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+
+    if (prefersReducedMotion || isCoarsePointer || !('IntersectionObserver' in window)) {
       elements.forEach((el) => el.classList.add('is-visible'))
       return
     }
+
+    const reveal = (el) => el.classList.add('is-visible')
+
+    elements.forEach((el) => {
+      if (isInViewport(el)) reveal(el)
+    })
+
+    const remaining = [...elements].filter((el) => !el.classList.contains('is-visible'))
+    if (!remaining.length) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return
-          entry.target.classList.add('is-visible')
+          reveal(entry.target)
           observer.unobserve(entry.target)
         })
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 }
+      { rootMargin: '80px 0px', threshold: 0 }
     )
 
-    elements.forEach((el) => observer.observe(el))
+    remaining.forEach((el) => observer.observe(el))
 
-    // Disjuntor: se depois de 3s NADA foi revelado, o observer não está
-    // funcionando neste ambiente e a página inteira ficaria invisível — o pior
-    // modo de falha possível. Nesse caso mostra tudo de uma vez.
-    // A condição "nada revelado" é de propósito: se um único elemento apareceu,
-    // o observer está vivo e o resto vai aparecer no scroll, como planejado.
     const failsafe = window.setTimeout(() => {
-      const revealed = document.querySelector('[data-reveal].is-visible')
-      if (revealed) return
-      elements.forEach((el) => el.classList.add('is-visible'))
-    }, 3000)
+      remaining.forEach((el) => reveal(el))
+    }, 800)
 
     return () => {
       observer.disconnect()
