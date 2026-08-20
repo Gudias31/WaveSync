@@ -60,25 +60,71 @@
   }
 
   /* ---------- Dispositivos de toque ----------
-     Celular e tablet (não o Safari desktop): vidro mais barato e atmosfera mais
-     discreta. O blur é um token único, então isto é uma linha em vez das ~30
-     linhas duplicadas de antes. O grid e os glows CONTINUAM visíveis, e o
-     motion continua ligado. */
+     Celular e tablet: primeiro paint visível e GPU mais barata. O Safari iOS
+     costuma atrasar IntersectionObserver até o primeiro scroll — se .reveal
+     ficar em opacity: 0 até lá, a pessoa vê só o fundo preto. */
   @media (hover: none) and (pointer: coarse) {
     :root {
-      --glass-blur: 10px;
-      --glass-blur-nav: 12px;
+      --glass-blur: 0px;
+      --glass-blur-nav: 0px;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .bg-grid {
-      opacity: 0.35;
+      opacity: 0.28;
       background-size: 72px 72px;
       mask-image: none;
     }
 
-    /* O brilho que atravessa o botão só existe para o hover, que aqui não há. */
+    .bg-glow {
+      display: none;
+    }
+
+    .hero-visual__glow {
+      opacity: 0.28;
+    }
+
+    .hero-visual__wave,
+    .hero-visual__wave-scroll {
+      animation: none;
+    }
+
+    .hero-visual__wave {
+      stroke-dashoffset: 0;
+    }
+
+    .hero-visual__wave-scroll {
+      will-change: auto;
+    }
+
     .btn::before {
       display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .bg-glow {
+      display: none;
+    }
+
+    .hero-visual__wave,
+    .hero-visual__wave-scroll {
+      animation: none;
+    }
+
+    .hero-visual__wave {
+      stroke-dashoffset: 0;
     }
   }
 

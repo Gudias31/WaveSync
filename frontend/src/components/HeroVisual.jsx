@@ -32,7 +32,7 @@ const waves = [
 
 function HeroVisual() {
   return (
-    <div className="hero-visual reveal" data-reveal>
+    <div className="hero-visual">
       <div className="hero-visual__glow" aria-hidden="true"></div>
       <div className="hero-visual__frame">
         <div className="hero-visual__chrome" aria-hidden="true">

@@ -103,14 +103,27 @@
   }
   </script>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11481391026"></script>
+  <!-- Primeiro paint no celular: nunca esconder o conteúdo enquanto o JS
+       não monta o observer. Sem isto o fundo escuro aparece sozinho. -->
+  <style>
+    html, body { background: #070b12; }
+    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) — depois do load para não competir com o bundle no 3G. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-11481391026');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-11481391026';
+      document.head.appendChild(s);
+    });
   </script>
 </head>
 <body>
