@@ -89,17 +89,9 @@
       opacity: 0.28;
     }
 
-    .hero-visual__wave,
-    .hero-visual__wave-scroll {
-      animation: none;
-    }
-
     .hero-visual__wave {
+      animation: none;
       stroke-dashoffset: 0;
-    }
-
-    .hero-visual__wave-scroll {
-      will-change: auto;
     }
 
     .btn::before {
@@ -118,12 +110,8 @@
       display: none;
     }
 
-    .hero-visual__wave,
-    .hero-visual__wave-scroll {
-      animation: none;
-    }
-
     .hero-visual__wave {
+      animation: none;
       stroke-dashoffset: 0;
     }
   }
