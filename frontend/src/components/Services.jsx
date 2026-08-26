@@ -61,7 +61,7 @@ function Services() {
           {coreServices.map((service, index) => (
             <article
               key={service.title}
-              className={`glass-card service-card reveal${index === 0 ? ' service-card--lead' : ''}`}
+              className="glass-card service-card reveal"
               data-reveal
               style={{ '--i': index }}
             >
