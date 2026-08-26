@@ -15,17 +15,19 @@
     position: relative;
     max-width: var(--container);
     margin: 0 auto;
+    width: 100%;
+    min-width: 0;
     display: grid;
     gap: var(--space-9);
     align-items: center;
   }
 
   .hero__content {
-    /* Centralizado no celular, alinhado à esquerda no desktop. */
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    min-width: 0;
   }
 
   .hero__badge {
@@ -77,8 +79,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: var(--space-8);
+    width: 100%;
   }
 
   /* ---------- Compromissos ----------
@@ -112,8 +115,7 @@
     width: 100%;
     aspect-ratio: 5 / 4;
     max-height: 320px;
-    /* Sem contain: paint aqui — ele recortaria os chips, que ficam de
-       propósito para fora da moldura. A contenção vive em __stage. */
+    min-width: 0;
   }
 
   .hero-visual__glow {
@@ -228,31 +230,6 @@
     }
   }
 
-  /* Chips flutuantes: só fatos sobre a stack. */
-  .hero-visual__chips {
-    position: absolute;
-    inset: auto 0 -14px 0;
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-    padding: 0 var(--space-4);
-  }
-
-  .hero-visual__chip {
-    padding: 6px var(--space-3);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--stroke-strong);
-    background: var(--surface-2);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    font-size: var(--fs-meta);
-    font-weight: 600;
-    color: var(--text-secondary);
-    box-shadow: var(--shadow-1);
-    white-space: nowrap;
-  }
-
   /* ---------- md: respiro ---------- */
   @media (min-width: 720px) {
     .hero-visual {
@@ -282,8 +259,6 @@
 
     .hero__content {
       grid-area: content;
-      text-align: left;
-      align-items: flex-start;
     }
 
     .hero__actions {
@@ -299,6 +274,12 @@
       align-self: center;
       max-height: none;
       aspect-ratio: 4 / 3.4;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero__actions .btn {
+      width: 100%;
     }
   }
 }

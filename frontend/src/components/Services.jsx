@@ -35,7 +35,7 @@ const alsoServices = [
     icon: <CpuIcon />,
     title: 'Automação com IA',
     description:
-      'Chatbots, assistentes internos e pipelines que reduzem trabalho manual sem sacrificar qualidade.',
+      'Chatbots, assistentes internos e pipelines para reduzir tarefas repetidas no dia a dia da operação.',
   },
   {
     icon: <WrenchIcon />,
@@ -54,14 +54,14 @@ function Services() {
             O que desenvolvemos
           </h2>
           <p className="section__lead">
-            Escopo completo para presença digital e operações web — da estratégia ao suporte contínuo.
+            Sites, landing pages e sistemas web, da definição do escopo ao suporte depois do lançamento.
           </p>
         </header>
         <div className="services__grid">
           {coreServices.map((service, index) => (
             <article
               key={service.title}
-              className="glass-card service-card reveal"
+              className={`glass-card service-card reveal${index === 0 ? ' service-card--lead' : ''}`}
               data-reveal
               style={{ '--i': index }}
             >

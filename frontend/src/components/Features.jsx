@@ -8,7 +8,7 @@ const features = [
   {
     title: 'Design responsivo',
     description:
-      'Layouts fluidos de mobile-first a ultra-wide, com componentes que se adaptam ao contexto.',
+      'O layout se adapta de celular a monitor largo, sem cortar texto nem exigir rolagem horizontal.',
   },
   {
     title: 'Carregamento leve',
@@ -41,7 +41,7 @@ function Features() {
             Por que nos escolher
           </h2>
           <p className="section__lead">
-            Práticas que aplicamos em todo projeto, independente do tamanho.
+            Design responsivo, carregamento leve, SEO técnico, segurança e canal direto com quem programa.
           </p>
         </header>
         <ul className="features__list">

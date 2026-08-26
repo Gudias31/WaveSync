@@ -45,6 +45,10 @@
     .services__grid {
       grid-template-columns: repeat(3, 1fr);
     }
+
+    .service-card--lead {
+      grid-column: span 2;
+    }
   }
 
   /* ---------- Também oferecemos ---------- */

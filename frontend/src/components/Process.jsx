@@ -9,7 +9,7 @@ const steps = [
   {
     title: 'Descoberta',
     description:
-      'Conversamos sobre objetivo, público e conteúdo. Definimos escopo, prazo e o que entra — e o que não entra — no projeto.',
+      'Conversamos sobre objetivo, público e conteúdo. Definimos escopo, prazo e o que entra (e o que não entra) no projeto.',
     result: 'escopo e proposta por escrito.',
   },
   {
@@ -46,8 +46,8 @@ function Process() {
             Como trabalhamos
           </h2>
           <p className="section__lead">
-            Um caminho previsível, com pontos de aprovação claros — você sempre sabe em que etapa o
-            projeto está e o que vem a seguir.
+            Cada etapa termina com algo concreto para você aprovar, então o projeto não avança no
+            escuro.
           </p>
         </header>
         <ol className="process__list">

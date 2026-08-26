@@ -60,18 +60,21 @@
     flex-direction: column;
     gap: var(--space-2);
     align-items: stretch;
-    flex: 0 0 auto;
-    min-width: min(100%, 320px);
+    flex: 0 1 auto;
+    min-width: 0;
+    width: min(100%, 320px);
   }
 
   .cta-banner__actions .btn {
     width: 100%;
+    max-width: 100%;
   }
 
-  /* O e-mail é longo; encolhe em telas estreitas em vez de estourar o botão. */
+  /* O e-mail é longo; quebra em telas estreitas em vez de estourar o botão. */
   .cta-banner__actions .btn--email span {
     font-size: clamp(0.78rem, 2.4vw, var(--fs-card));
     line-height: 1.25;
     text-align: center;
+    overflow-wrap: anywhere;
   }
 }

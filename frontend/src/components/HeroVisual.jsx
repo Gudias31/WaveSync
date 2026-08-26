@@ -56,7 +56,7 @@ function HeroVisual() {
                 <stop offset="0" stopColor="#3d9dff" stopOpacity="0" />
                 <stop offset="0.25" stopColor="#3d9dff" stopOpacity="0.9" />
                 <stop offset="0.6" stopColor="#8ecbff" stopOpacity="0.75" />
-                <stop offset="1" stopColor="#6450ff" stopOpacity="0" />
+                <stop offset="1" stopColor="#3d9dff" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="wsWaveSoft" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stopColor="#3d9dff" stopOpacity="0" />
@@ -79,10 +79,6 @@ function HeroVisual() {
             </g>
           </svg>
         </div>
-      </div>
-      <div className="hero-visual__chips" aria-hidden="true">
-        <span className="hero-visual__chip">React + Vite</span>
-        <span className="hero-visual__chip">Deploy em CDN</span>
       </div>
     </div>
   )

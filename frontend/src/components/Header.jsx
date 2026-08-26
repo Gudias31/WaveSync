@@ -56,7 +56,7 @@ function Header({ navOpen, setNavOpen, scrolled }) {
         className={`nav glass-nav${navOpen ? ' is-open' : ''}${scrolled ? ' is-scrolled' : ''}`}
         aria-label="Principal"
       >
-        <a href="#topo" className="nav__brand" aria-label="WaveSync — início">
+        <a href="#topo" className="nav__brand" aria-label="WaveSync, início">
           <img
             src={`${import.meta.env.BASE_URL}logo.png`}
             alt=""

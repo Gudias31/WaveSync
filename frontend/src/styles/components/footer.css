@@ -74,6 +74,7 @@
   .footer__contact {
     font-size: var(--fs-card);
     color: var(--text-muted);
+    overflow-wrap: anywhere;
     transition: color var(--dur-2) var(--ease-out);
   }
 

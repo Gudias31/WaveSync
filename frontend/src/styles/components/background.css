@@ -38,7 +38,6 @@
     left: -100px;
     /* rgb() primeiro como fallback: color-mix() é recente (Chrome 111+,
        Safari 16.2+) e sem a primeira declaração o glow simplesmente não pinta. */
-    background: radial-gradient(circle, rgb(100 80 255 / 0.35), transparent 70%);
-    background: radial-gradient(circle, color-mix(in srgb, var(--violet-500) 35%, transparent), transparent 70%);
+    background: radial-gradient(circle, rgb(61 157 255 / 0.28), transparent 70%);
   }
 }

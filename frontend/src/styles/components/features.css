@@ -24,8 +24,7 @@
     height: 22px;
     margin-top: 3px;
     border-radius: var(--radius-xs);
-    background: var(--accent-gradient);
-    box-shadow: 0 0 16px var(--accent-glow);
+    background: var(--accent);
     position: relative;
   }
 

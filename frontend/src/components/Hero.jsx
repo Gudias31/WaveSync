@@ -25,8 +25,8 @@ function Hero() {
             <span className="hero__title-accent">feitos sob medida para a sua marca</span>
           </h1>
           <p className="hero__subtitle">
-            Desenvolvemos sites institucionais, landing pages e sistemas sob medida — do briefing ao
-            deploy, com código próprio, foco em performance e acompanhamento depois da entrega.
+            Desenvolvemos sites institucionais, landing pages e sistemas sob medida: do briefing ao
+            ar, com código próprio, foco em performance e acompanhamento depois da entrega.
           </p>
           <div className="hero__actions">
             <a href="#contato" className="btn btn--primary">

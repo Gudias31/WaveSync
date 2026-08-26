@@ -7,7 +7,7 @@ const cards = [
     icon: <InnovationIcon />,
     title: 'Tecnologia atual',
     description:
-      'Stacks modernas — React, Vite, APIs em Python — escolhidas pelo que o projeto precisa, não por moda.',
+      'React, Vite e APIs em Python, escolhidos pelo que o projeto precisa, não por moda.',
   },
   {
     icon: <PerformanceIcon />,
@@ -33,7 +33,7 @@ function About() {
           </h2>
           <p className="section__lead">
             Somos um estúdio de desenvolvimento web. Trabalhamos em contato direto com quem decide,
-            escrevemos o código do zero e entregamos o projeto documentado — do briefing ao deploy em
+            escrevemos o código do zero e entregamos o projeto documentado, do briefing ao deploy em
             produção.
           </p>
         </header>

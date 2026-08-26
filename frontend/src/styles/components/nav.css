@@ -16,10 +16,11 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-6);
+    min-width: 0;
     padding: var(--space-3) var(--space-5);
     border-radius: var(--radius-lg);
     border: 1px solid var(--stroke);
-    background: linear-gradient(135deg, var(--surface-2), rgb(12 18 32 / 0.55));
+    background: var(--surface-2);
     backdrop-filter: blur(var(--glass-blur-nav));
     -webkit-backdrop-filter: blur(var(--glass-blur-nav));
     box-shadow: var(--shadow-1), var(--shadow-inset-top);
@@ -177,6 +178,17 @@
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .site-header {
+      padding-inline: var(--space-4);
+    }
+
+    .glass-nav {
+      gap: var(--space-3);
+      padding-inline: var(--space-3);
     }
   }
 }

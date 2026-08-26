@@ -15,7 +15,6 @@
     --blue-400: #5cb0ff;
     --blue-500: #3d9dff;
     --blue-600: #2568d4;
-    --violet-500: #6450ff;
     --green-400: #2fe677;
     --green-500: #25d366;
     --ink-900: #070b12;
@@ -107,14 +106,14 @@
     --radius-xs: 8px;
     --radius-sm: 12px;
     --radius-md: 16px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+    --radius-lg: 14px;
+    --radius-xl: 16px;
     --radius-pill: 999px;
 
     /* ---------- Elevação ---------- */
     --shadow-1: 0 8px 32px rgb(0 0 0 / 0.28);
     --shadow-2: 0 16px 48px rgb(0 0 0 / 0.38);
-    --shadow-3: 0 24px 80px rgb(0 0 0 / 0.45);
+    --shadow-3: 0 12px 32px rgb(0 0 0 / 0.32);
     --shadow-inset-top: inset 0 1px 0 var(--highlight-top);
     --shadow-accent: 0 12px 40px rgb(61 157 255 / 0.35);
     --shadow-accent-hover: 0 18px 48px rgb(61 157 255 / 0.48);
