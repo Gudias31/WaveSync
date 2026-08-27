@@ -36,12 +36,14 @@ const alsoServices = [
     title: 'Automação com IA',
     description:
       'Chatbots, assistentes internos e pipelines para reduzir tarefas repetidas no dia a dia da operação.',
+    meta: 'Inclui: levantamento do fluxo a automatizar',
   },
   {
     icon: <WrenchIcon />,
     title: 'Manutenção e Suporte',
     description:
       'SLAs claros, monitoramento, atualizações de segurança e evolução contínua do produto após o go-live.',
+    meta: 'Inclui: canal direto após o lançamento',
   },
 ]
 
@@ -71,6 +73,7 @@ function Services() {
               <h3>{service.title}</h3>
               <p>{service.description}</p>
               <p className="service-card__meta">{service.meta}</p>
+              <p className="service-card__meta">{service.meta}</p>
             </article>
           ))}
         </div>
@@ -80,7 +83,7 @@ function Services() {
             {alsoServices.map((service, index) => (
               <article
                 key={service.title}
-                className="glass-card service-card service-card--compact reveal"
+                className="glass-card service-card reveal"
                 data-reveal
                 style={{ '--i': index + 3 }}
               >

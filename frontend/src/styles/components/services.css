@@ -1,8 +1,9 @@
-/* Serviços: núcleo de 3 cards em grid; "também oferecemos" como fileira
-   secundária, mais compacta, para não competir de igual para igual. */
+/* Serviços: 3 colunas iguais. Núcleo e "também oferecemos" compartilham
+   a mesma malha, para os cards terem a mesma largura e a mesma altura. */
 
 @layer components {
-  .services__grid {
+  .services__grid,
+  .services__also-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--grid-gap);
@@ -18,6 +19,12 @@
 
   .service-card h3 {
     margin: var(--space-4) 0 var(--space-2);
+    min-height: calc(var(--fs-h3) * var(--leading-tight) * 2);
+  }
+
+  .service-card > p:not(.service-card__meta) {
+    flex: 1 1 auto;
+    min-height: calc(var(--fs-card) * var(--leading-body) * 4);
   }
 
   .service-card__icon {
@@ -28,10 +35,10 @@
     border: 1px solid var(--stroke);
   }
 
-  /* Linha de entregáveis: só o núcleo tem, é o que justifica o peso maior. */
   .service-card__meta {
-    margin: auto 0 0;
+    margin-top: auto;
     padding-top: var(--space-3);
+    min-height: calc(var(--fs-meta) * 1.5 * 2 + var(--space-3));
     border-top: 1px solid var(--stroke-faint);
     font-size: var(--fs-meta);
     color: var(--text-faint);
@@ -39,12 +46,12 @@
   }
 
   @media (min-width: 720px) {
-    .services__grid {
+    .services__grid,
+    .services__also-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  /* ---------- Também oferecemos ---------- */
   .services__also {
     margin-top: var(--space-8);
   }
@@ -54,40 +61,5 @@
     font-size: var(--fs-card);
     font-weight: 600;
     color: var(--text-faint);
-  }
-
-  .services__also-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--grid-gap);
-  }
-
-  .service-card--compact {
-    padding: var(--space-5);
-  }
-
-  .service-card--compact .service-card__icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  @media (min-width: 720px) {
-    .services__also-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* Sem isto, os 2 cards secundários dividiam o container em 2 colunas
-     enquanto os 3 primários dividiam em 3 — o secundário "compacto" acabava
-     mais LARGO que o principal. Mesmas faixas de coluna dos dois grids, só
-     com uma coluna sobrando (compacto de propósito, sem esticar). */
-  @media (min-width: 1024px) {
-    .services__also-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .service-card--compact {
-      grid-column: span 1;
-    }
   }
 }
