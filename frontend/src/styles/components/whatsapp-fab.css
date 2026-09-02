@@ -6,8 +6,10 @@
   .wa-fab {
     position: fixed;
     right: var(--space-5);
-    /* env() para não encostar na barra de gestos do iOS. */
-    bottom: max(var(--space-5), env(safe-area-inset-bottom, 0px));
+    /* O env() soma 0 hoje (a meta viewport não usa viewport-fit=cover, então o
+       iOS já entrega a viewport dentro da área segura) e continua correto se
+       um dia passar a usar. */
+    bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
     /* Abaixo do header e do painel de navegação aberto. */
     z-index: calc(var(--z-header) - 1);
 
@@ -85,6 +87,16 @@
       overflow: hidden;
       clip-path: inset(50%);
       white-space: nowrap;
+    }
+  }
+
+  /* Telas pequenas: um pouco mais alto e mais próximo da borda. A barra
+     inferior do Safari no iPhone come os últimos pixels da tela, e o alvo de
+     58px continua confortável para o polegar sem cobrir texto. */
+  @media (max-width: 479px) {
+    .wa-fab {
+      right: var(--space-4);
+      bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
     }
   }
 
