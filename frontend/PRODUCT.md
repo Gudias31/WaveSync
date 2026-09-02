@@ -26,7 +26,7 @@ Atendimento 100% remoto, em português. Fluxo de contato: o visitante conta o ob
 
 - Frontend: React 18 + Vite (SPA de página única, seções via scroll/hash: Hero, About, Services, Process, Features, Contact).
 - Backend: Python FastAPI (fora do escopo deste trabalho de frontend).
-- Contato: WhatsApp (+55 11 96936-0932) e e-mail (contato@wavesynctech.com.br).
+- Contato: WhatsApp (+55 11 96725-9314) e e-mail (contato@wavesynctech.com.br).
 - O README do repositório ainda referencia o nome antigo "CloudFrame Technology" — o nome atual e correto do produto é **WaveSync Technology** (confirmado pelo conteúdo real em Contact.jsx). Não usar "CloudFrame" em nenhum trabalho novo.
 
 ## Brand Commitments

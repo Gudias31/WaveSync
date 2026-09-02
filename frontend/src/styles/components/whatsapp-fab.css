@@ -1,0 +1,99 @@
+/* Atalho flutuante do WhatsApp.
+   Visibilidade é decidida no WhatsAppFab.jsx; aqui só a aparência e os dois
+   estados (oculto / .is-visible). */
+
+@layer components {
+  .wa-fab {
+    position: fixed;
+    right: var(--space-5);
+    /* env() para não encostar na barra de gestos do iOS. */
+    bottom: max(var(--space-5), env(safe-area-inset-bottom, 0px));
+    /* Abaixo do header e do painel de navegação aberto. */
+    z-index: calc(var(--z-header) - 1);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--whatsapp-gradient);
+    color: #052e16;
+    box-shadow: 0 14px 40px rgb(37 211 102 / 0.35), var(--shadow-1);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: var(--fs-card);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(0.92);
+    transition:
+      opacity var(--dur-3) var(--ease-out),
+      transform var(--dur-3) var(--ease-spring),
+      visibility var(--dur-3),
+      box-shadow var(--dur-3) var(--ease-out),
+      gap var(--dur-3) var(--ease-out),
+      padding var(--dur-3) var(--ease-out);
+  }
+
+  .wa-fab.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .wa-fab svg {
+    flex-shrink: 0;
+  }
+
+  /* O rótulo fica recolhido e abre no hover/foco: em repouso o botão é um
+     círculo discreto, e quem aponta para ele descobre o que vai acontecer
+     antes de clicar. */
+  .wa-fab__label {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition:
+      max-width var(--dur-3) var(--ease-out),
+      opacity var(--dur-2) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .wa-fab:hover,
+    .wa-fab:focus-visible {
+      gap: var(--space-3);
+      padding-right: var(--space-6);
+      box-shadow: 0 18px 48px rgb(37 211 102 / 0.45), var(--shadow-2);
+    }
+
+    .wa-fab:hover .wa-fab__label,
+    .wa-fab:focus-visible .wa-fab__label {
+      max-width: 14rem;
+      opacity: 1;
+    }
+  }
+
+  /* Sem hover (toque), o rótulo nunca abre: o ícone do WhatsApp já é
+     reconhecido, e um botão largo cobriria conteúdo em tela pequena. */
+  @media not all and (hover: hover) {
+    .wa-fab__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+
+  .wa-fab.is-visible:active {
+    transform: scale(0.96);
+  }
+
+  .wa-fab:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring), 0 14px 40px rgb(37 211 102 / 0.35);
+  }
+}

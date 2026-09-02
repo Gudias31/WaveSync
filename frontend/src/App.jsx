@@ -8,6 +8,7 @@ import Features from './components/Features'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Background from './components/Background'
+import WhatsAppFab from './components/WhatsAppFab'
 import { useReveal } from './hooks/useReveal'
 import { useHashScroll } from './hooks/useHashScroll'
 
@@ -51,6 +52,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppFab />
     </>
   )
 }

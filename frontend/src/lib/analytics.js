@@ -23,13 +23,17 @@ export const CONVERSION_LABELS = {
  * pessoa da página, e sem beacon a requisição seria cancelada no meio.
  *
  * @param {'whatsapp' | 'email'} channel
+ * @param {string} [source] Onde a pessoa clicou ('secao_contato',
+ *   'botao_flutuante'). O WhatsApp agora tem dois pontos de entrada, e sem
+ *   isso os dois cairiam no mesmo evento, indistinguíveis no relatório.
  */
-export function trackConversion(channel) {
+export function trackConversion(channel, source) {
   const gtag = typeof window !== 'undefined' ? window.gtag : undefined
   if (typeof gtag !== 'function') return
 
   gtag('event', `contato_${channel}`, {
     event_category: 'contato',
+    ...(source ? { event_label: source } : null),
     transport_type: 'beacon',
   })
 

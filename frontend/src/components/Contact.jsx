@@ -1,9 +1,6 @@
 import { CheckIcon, MailIcon, WhatsAppIcon } from './Icons'
 import { trackConversion } from '../lib/analytics'
-
-const WHATSAPP_URL =
-  'https://wa.me/5511969360932?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20WaveSync%20Technology.'
-const EMAIL = 'contato@wavesynctech.com.br'
+import { EMAIL, WHATSAPP_URL } from '../lib/contact'
 
 /* Sem case ou depoimento real ainda, o momento de maior risco da página — pedir
  * orçamento a um estranho — ficava sustentado só por autodescrição. Estes dois
@@ -40,12 +37,12 @@ function Contact() {
               className="btn btn--whatsapp"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackConversion('whatsapp')}
+              onClick={() => trackConversion('whatsapp', 'secao_contato')}
             >
               <WhatsAppIcon />
               <span>Falar no WhatsApp</span>
             </a>
-            <a href={`mailto:${EMAIL}`} className="btn btn--email" onClick={() => trackConversion('email')}>
+            <a href={`mailto:${EMAIL}`} className="btn btn--email" onClick={() => trackConversion('email', 'secao_contato')}>
               <MailIcon />
               <span>{EMAIL}</span>
             </a>
